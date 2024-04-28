@@ -2,9 +2,14 @@ const express = require('express');
 
 const app = express();
 
-// Define routes
 app.get('/', (req, res) => {
-  res.send('Hello, this is the test server!');
+  /*
+  simulate latency/delay in response from 
+  server using setTimeout to test caching
+  */
+  setTimeout(() => {
+    res.send('Hello, this is the test server!');
+  }, 5000);
 });
 
 app.get('/api/data', (req, res) => {
@@ -14,9 +19,6 @@ app.get('/api/data', (req, res) => {
   };
   res.json(data);
 });
-
-// Start the server
-// const PORT = process.env.PORT || 3000;
 
 const PORT = 5000;
 app.listen(PORT, () => {
